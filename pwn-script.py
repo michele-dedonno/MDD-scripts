@@ -21,7 +21,8 @@
 #
 
 # TODO: aggiusta gli arguments in input usando "PARENTS" option invece degli IF annidati
-# TODO: da sistemare gli arguments in input con dei nomi più significativi per i valori dei flag specificati nell'help (e.s. -o FILE PATH)
+# TODO: da sistemare gli arguments in input con dei nomi più significativi (METAVAL?) per i valori dei flag specificati nell'help (e.s. -o FILE PATH)
+# TODO: sposta s_addr, r_addr, etc. come input parameters invece di hardcoded
 
 from pwn import *
 import sys
