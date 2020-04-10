@@ -21,7 +21,7 @@
 #   python2.7 pwn-script.py -r <hostname/IP> -p <port> -O 188
 #
 
-# TODO: sposta s_addr, r_addr, etc. come input parameters invece di hardcoded
+# TODO: sposta s_addr, r_addr, etc. come input parameters (nargs='+') invece di hardcoded
 
 from pwn import *
 import sys
