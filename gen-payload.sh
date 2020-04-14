@@ -18,7 +18,7 @@
 #   % ====================================================================== %
 
 
-#   % ==================== DESCRIPTION AND USAGE ==================== &
+#   % ======================= DESCRIPTION AND USAGE ======================= &
 #     Bash script that generates the payload for the
 #     Buffer Overflow of a function that requires 2 
 #     parameters and that has an EIP offset of 188
@@ -37,6 +37,7 @@
 #
 #     Note 2: echo can also be used instead of printf:
 #		            echo -n -e "<string>" >> <file>
+#   % ====================================================================== %
 
 fname="payload.bin"
 rm -f $fname
