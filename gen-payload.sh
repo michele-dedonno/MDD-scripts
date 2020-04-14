@@ -1,23 +1,42 @@
 #!/bin/bash
+
+#   Copyright (C) 2020 Michele De Donno
+
+#   % ============================== LICENSE ============================== %
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
 #
-#
-# Bash script that generates the payload for the
-# Buffer Overflow of a function that requires 2 
-# parameters and that has an EIP offset of 188
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>
+#   % ====================================================================== %
+
+
+#   % ==================== DESCRIPTION AND USAGE ==================== &
+#     Bash script that generates the payload for the
+#     Buffer Overflow of a function that requires 2 
+#     parameters and that has an EIP offset of 188
 # 
-# Note 1: addresses are expressed in little endian 
-#       and have been generated using the pwntool
-#	python library (http://docs.pwntools.com/en/stable/)
-#	as shown below.
-#		$ python2.7
-#		>>> from pwn import *
-#		>>> p32(0xdeadbeef)
-#		'\xef\xbe\xad\xde'
-#		>>> p32(0xc0ded00d)
-#		'\r\xd0\xde\xc0
+#     Note 1: addresses are expressed in little endian 
+#             and have been generated using the pwntool
+#	            python library (http://docs.pwntools.com/en/stable/)
+#	            as shown below.
+#		          
+#              $ python2.7
+#		            >>> from pwn import *
+#		            >>> p32(0xdeadbeef)
+#		            '\xef\xbe\xad\xde'
+#		            >>> p32(0xc0ded00d)
+#		            '\r\xd0\xde\xc0
 #
-# Note 2: echo can also be used instead of printf:
-#		echo -n -e "<string>" >> <file>
+#     Note 2: echo can also be used instead of printf:
+#		            echo -n -e "<string>" >> <file>
 
 fname="payload.bin"
 rm -f $fname
