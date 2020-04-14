@@ -1,25 +1,45 @@
 #!/usr/bin/python2.7
 # coding=utf-8
 
+
+#   Copyright (C) 2020 Michele De Donno
+
+#   % ============================== LICENSE ============================== %
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
 #
-# Script that uses pwntool to do one of the followings:
-#   * Compute the EIP offset of a local file generating segmentation fault (option -o)
-#   * Exploit a local binary that is subject to simple buffer overflow (option -l) 
-#   * Exploit a remote server vulnerable to simple buffer overflow (option -r)
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>
+#   % ====================================================================== %
+
+
+#   % ======================= DESCRIPTION AND USAGE ======================= &
 #
-# Example of usage:
-#   // Just compute the EIP offset of a local binary file
-#   python2.7 pwn-script.py -o <file-path> 
+#       Script that uses pwntools library (docs.pwntools.com/en/stable/) to do one of the followings:
+#           * Compute the EIP offset of a local binary file generating a buffer overflow (option -o)
+#           * Exploit a local binary that is subject to simple buffer overflow (option -l) 
+#           * Exploit a remote server vulnerable to simple buffer overflow (option -r)
+#
+#       Example of usage:
+#           // Just compute the EIP offset of a local binary file
+#           python2.7 pwn-script.py -o <file-path> 
 #   
-#   // Exploit a local binary file without knowing the EIP offsett
-#   python2.7 pwn-script.py -l <file-path>
+#           // Exploit a local binary file without knowing the EIP offsett
+#           python2.7 pwn-script.py -l <file-path>
 #
-#   // Exploit a local binary file knowing the EIP offset
-#   python2.7 pwn-script.py -l <file-path> -O 188
+#           // Exploit a local binary file knowing the EIP offset
+#           python2.7 pwn-script.py -l <file-path> -O 188
 #
-#   // Exploit a remote binary file knowing the EIP offset
-#   python2.7 pwn-script.py -r <hostname/IP> -p <port> -O 188
-#
+#           // Exploit a remote binary file knowing the EIP offset
+#           python2.7 pwn-script.py -r <hostname/IP> -p <port> -O 188
+#   % ====================================================================== %
 
 # TODO: sposta s_addr, r_addr, etc. come input parameters (nargs='+') invece di hardcoded
 
