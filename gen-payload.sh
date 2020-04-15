@@ -19,8 +19,8 @@
 
 
 #   % ======================= DESCRIPTION AND USAGE ======================= &
-#     Bash script that generates the payload for the
-#     buffer overflow of a function that requires 2 
+#     Bash script that generates the payload for a
+#     stack buffer overflow of a function that requires 2 
 #     parameters and that has an EIP offset of 188
 #
 #     The payload can then be used with the following commands:
