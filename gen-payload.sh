@@ -20,7 +20,7 @@
 
 #   % ======================= DESCRIPTION AND USAGE ======================= &
 #     Bash script that generates the payload for the
-#     Buffer Overflow of a function that requires 2 
+#     buffer overflow of a function that requires 2 
 #     parameters and that has an EIP offset of 188
 #
 #     The payload can then be used with the following commands:
@@ -44,6 +44,8 @@
 #		           $ echo -n -e "<string>" >> <file>
 #
 #   % ====================================================================== %
+
+# TODO: parametrizza valore offset, filename, indirizzi
 
 fname="payload.bin"
 rm -f $fname
