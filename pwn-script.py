@@ -23,9 +23,9 @@
 #   % ======================= DESCRIPTION AND USAGE ======================= &
 #
 #       Script that uses pwntools library (docs.pwntools.com/en/stable/) to do one of the followings:
-#           * Compute the EIP offset of a local binary file generating a buffer overflow (option -o)
-#           * Exploit a local binary that is subject to simple buffer overflow (option -l) 
-#           * Exploit a remote server vulnerable to simple buffer overflow (option -r)
+#           * Compute the EIP offset of a local binary file generating a stack buffer overflow (option -o)
+#           * Exploit a local binary that is subject to simple stack buffer overflow (option -l) 
+#           * Exploit a remote server vulnerable to simple stack buffer overflow (option -r)
 #
 #       Example of usage:
 #           // Just compute the EIP offset of a local binary file
