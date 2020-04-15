@@ -29,7 +29,7 @@
 #
 #
 #     Note 1: addresses are expressed in little endian 
-#             and have been generated using the pwntool
+#             and have been generated using the pwntools
 #	            python library (http://docs.pwntools.com/en/stable/)
 #	            as shown below.
 #		          
