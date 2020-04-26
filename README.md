@@ -15,4 +15,4 @@ See the GNU General Public License for more details.
 
 # Copyright
 
-Copyright (C) 2020 Michele De Donno
+Copyright (C) 2020 Michele De Donno, All Rights Reserved
