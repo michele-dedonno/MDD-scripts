@@ -113,5 +113,5 @@ if __name__ == "__main__":
     for i in result:
         print("{}".format(i), end="")
         if i != result[len(result)-1]:
-            print(",", end="")
+            print(",", end=" ")
     print("}", end="")
