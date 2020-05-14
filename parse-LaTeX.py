@@ -65,7 +65,6 @@ def getList2(data):
     #print (list2)
     return retlist
 
-
 if __name__ == "__main__":
     # Loading data from file
     f = open('input.txt')
@@ -115,3 +114,39 @@ if __name__ == "__main__":
         if i != result[len(result)-1]:
             print(",", end=" ")
     print("}", end="")
+    
+    # uniqueRef('statistics.txt')
+    
+    return
+
+# % ================================================================== %
+#   Additional function that returns the list of unique references in a 
+#   given LaTeX file and their number.
+# % ================================================================== %
+def uniqueRef(filename)
+    f = open(filename)
+    data = f.read()
+    f.close()
+    retlist = []
+    searchS = "\cite{"
+    found = data.find(searchS)
+    while(found != -1):
+        # start the string after '\cite{'
+        data = data[found+len(searchS):]
+        # remove everything after the final bracets and generate the list
+        temp = data[:data.find("}")]
+        retlist += temp.split(",")
+        # process the next substring
+        found = data.find(searchS)
+    # sort, remove duplicated and blank spaces
+    result = list(dict.fromkeys(sorted(i.strip() for i in retlist)))
+    # Print output
+    print("\cite{", end="")
+    for i in result:
+        if i != result[len(result)-1]:
+            print("{}".format(i), end=", ")
+        else:
+            print("{}".format(i), end="")
+    print("}")
+    print("###")
+    print("Number of elements: {}".format(str(len(result))))
