@@ -106,7 +106,8 @@ if __name__ == "__main__":
     data = f.read()
     f.close()
  
-    # % --- Remove the '\cite' in \multirow from the data ---%
+    # % --- Remove the '\cite' in '\multirow' from the data ---%
+    #   N.B. only the first '\cite' inside '\multirow' will be processed
     # identify multirow
     searchS = "\multirow{"
     data2 = data[data.find(searchS):]
