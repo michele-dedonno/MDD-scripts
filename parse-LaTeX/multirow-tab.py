@@ -19,7 +19,7 @@
 # % ====================================================================== %
 
 
-# % ======================= DESCRIPTION AND USAGE ======================= &
+# % ======================= DESCRIPTION AND USAGE ======================= %
 #
 # Script that removes duplicated references in a LaTeX table with a 
 # '\multirow{}' cell. Requires an 'input.txt' file in the cwd.
@@ -31,7 +31,7 @@
 #   - LaTeX string containing the unique references included in the first 
 #     '\multirow{}' cell of the table that are NOT referenced anywhere else 
 #     in the table
-
+# % ====================================================================== %
 
 def getList1(data):
     retlist = []
