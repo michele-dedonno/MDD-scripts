@@ -1,6 +1,36 @@
 #!/bin/bash
-# Simple IP sweep script that checks hosts online in the /24 subnet provided as input
 
+#   Copyright (C) 2020 Michele De Donno
+
+#   % ============================== LICENSE ============================== %
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>
+#   % ====================================================================== %
+
+
+#   % ======================= DESCRIPTION AND USAGE ======================= &
+#     Bash script that implements a basic IP sweep scan aimed at determining 
+#     which IP addresses are live in the /24 subnet provided as input.
+# 	
+#     Example of usage:
+#	./ipsweep.sh 192.168.1 > hostlist.txt	
+#
+#     This script is inspired from the Udemy course "Practical Ethical 
+#     Hacking - The Complete Course" taught by Heath Adams.
+#   % ====================================================================== %
+# 
+
+# TODO: to check that the input IP corresponds to 3 valids IPv6 octets
 
 if [ "$1" == "" ]
 then
