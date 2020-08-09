@@ -23,7 +23,8 @@
 #     which IP addresses are live in the /24 subnet provided as input.
 # 	
 #     Example of usage:
-#	./ipsweep.sh 192.168.1 > hostlist.txt	
+#	$ ./ipsweep.sh 192.168.1 > hostlist.txt	
+#	$  for ip in $(cat hostlist.txt); do nmap -sS -sU -T4 -A -v $ip; done
 #
 #     This script is inspired from the Udemy course "Practical Ethical 
 #     Hacking - The Complete Course" taught by Heath Adams.
