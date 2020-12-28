@@ -51,7 +51,7 @@ print("-"*50)
 # Start scanning
 try:
         print("Ports open:")
-        for port in range(1,65536):
+        for port in range(1,65535):
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # create socket
             socket.setdefaulttimeout(1) # timeout for connection try
             result = s.connect_ex((targetIP,port)) # return an error indicator
