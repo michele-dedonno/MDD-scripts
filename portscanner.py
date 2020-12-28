@@ -45,7 +45,8 @@ targetIP = socket.gethostbyname(sys.argv[1])
 # Print banner
 print("-"*50)
 print("Scanning target: "+targetIP)
-print("Time started: "+str(datetime.now()))
+sTime = datetime.now()
+print("Time started: "+str(sTime))
 print("-"*50)
 
 # Start scanning
@@ -69,3 +70,10 @@ except socket.gaierror:
 except socket.error:
     print("Error: Could not connect to the server.")
     sys.exit()
+
+print("-"*50)
+eTime = datetime.now()
+print("Time finished: "+str(eTime))
+duration = eTime - sTime
+print("Duration: "+str(duration.total_seconds())+" seconds.")
+print("-"*50)
