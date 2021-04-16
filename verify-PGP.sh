@@ -1,8 +1,32 @@
-#! /bin/bash
+#!/bin/bash
 
-# Script to verify a PGP-signed message against its public key
+#   Copyright (C) 2021 Michele De Donno
 
-# Usage: ./verify_msg.sh <pgp-public-key> <message-file>
+#   % ============================== LICENSE ============================== %
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>
+#   % ====================================================================== %
+
+
+#   % ======================= DESCRIPTION AND USAGE ======================= &
+#     Bash script that verifies a PGP-signed message against its public key.
+#     
+#     Usage: 
+#       $ ./verify-PGP.sh <pgp-public-key> <message-file>
+#
+#   % ====================================================================== %
+# 
+
 
 #set -e
 
