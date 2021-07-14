@@ -22,7 +22,7 @@
 #     Bash script that implements a basic Web Application enumerations of 
 #     the target domain provided as input.
 #
-#	  Requirements
+#     Requirements
 #	  	This script uses the following tools for enumerating the target:
 #			- assetfinder (https://github.com/tomnomnom/assetfinder)
 #			- amass (https://github.com/OWASP/Amass)
@@ -40,11 +40,11 @@
 
 
 # Variables
-target=$1
-output=$target/recon
+target=${1}
+output=${target}/recon
 
 # Usage
-if [ "$1" == "" ]
+if [ "${1}" == "" ]
 then
 	echo -e "Error:\t Missing target domain.";
 	echo -e "Usage:\t $0 <target-domain>. Example: $0 hackme.com";
@@ -52,24 +52,24 @@ then
 fi
 
 # Create output folder
-mkdir -p $output
+mkdir -p ${output}
 
 # Find target subdomains and related assets with assetfinder
 echo "[+] Harvesting subdomains and assets for target domain '${target}' using 'assetfinder'"
-assetfinder $target >> $output/assets.txt
+assetfinder ${target} > ${output}/assets.txt
 if [ $? -eq 0 ]; then
 	echo "[+] Full assetfinder output available at ${output}/assets.txt"
 	# Extract sub-domains only
-	cat $output/assets.txt | grep $1 >> $output/subdomains.txt
+	cat ${output}/assets.txt | grep ${target} > ${output}/subdomains.txt
 	if [ $? -eq 0 ]; then
 		echo "[+] Filtered output available at ${output}/subdomains.txt"
 		# removing duplicates
-		sort -u $output/subdomains.txt > $output/subdomains.txt
-		if [ $? -ne 0 ]; then
-			echo "[-] Failed to sort ${output}/subdomains.txt"
-		fi
-	else
-	   	echo "[-] ERROR, skipping filtering of subdomains"
+ 		sort -u -o ${output}/subdomains.txt{,}
+ 		if [ $? -ne 0 ]; then
+ 			echo "[-] Failed to sort ${output}/subdomains.txt"
+ 		fi
+ 	else
+ 	   	echo "[-] ERROR, skipping filtering of subdomains"
 	fi
 else
 	echo "[-] ERROR, skipping harvesting with assetfinder"
@@ -77,11 +77,11 @@ fi
 
 # Find target subdomains and related assets with amass
 echo "[+] Harvesting subdomains and assets for target domain '${target}' using 'Amass'"
-amass enum -d $target >> $output/subdomains.txt
+amass enum -d ${target} >> ${output}/subdomains.txt
 if [ $? -eq 0 ]; then
 	echo "[+] Amass output added to ${output}/subdomains.txt"
 	# removing duplicates
-	sort -u $output/subdomains.txt > $output/subdomains.txt
+	sort -u -o ${output}/subdomains.txt{,}
 	if [ $? -ne 0 ]; then
 		echo "[-] Failed to sort ${output}/subdomains.txt"
 	fi
@@ -91,19 +91,19 @@ fi
 
 # Probe for working http and https servers
 echo "[+] Probing for alive domains (over http and https) using 'httprobe'"
-cat $output/subdomains.txt | httprobe | awk -F '//' '{print $2}' | tr -d ':*' >> $output/alive-subdomains.txt
+cat ${output}/subdomains.txt | httprobe | awk -F '//' '{print $2}' | tr -d ':*' >> ${output}/alive-subdomains.txt
 if [ $? -eq 0 ]; then
-	echo "[+] Alive subdomains available at $output/alive-subdomains.txt"
+	echo "[+] Alive subdomains available at ${output}/alive-subdomains.txt"
 else
 	echo "[-] ERROR, skipping probing with httprobe"
 fi
 
 # Take a screenshot of all alive domains
 echo "[+] Taking screenshots of alive domains using 'eyewitness'"
-mkdir -p $output/screenshots
-gowitness file -f $output/alive-subdomains.txt -P $output/screenshots
+mkdir -p ${output}/screenshots
+gowitness file -f ${output}/alive-subdomains.txt -P ${output}/screenshots
 if [ $? -eq 0 ]; then
-	echo "[+] Screenshots available at $output/screenshots"
+	echo "[+] Screenshots available at ${output}/screenshots"
 else
 	echo "[-] ERROR, skipping screenshots with gowitness"
 fi
