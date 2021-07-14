@@ -9,6 +9,7 @@ Collection of scripts for different purposes, mainly for Capture The Flags, Pene
 * [portscanner.py](portscanner.py): python script that implements a basic single-thread IPv4 port scanner;
 * [pwn-script.py](pwn-script.py): python script that uses pwntools library to exploit simple stack buffer overflows on local or remote targets;
 * [verify-PGP.sh](verify-PGP.sh): bash script to verify a PGP-signed messaged against its public key, without permanently import the key;
+* [WebRecon.sh](WebRecon.sh): bash scripts for basic web application information gathering;
 
 Please note that these scripts are just helpers I use in my activities and might be (partially) useful for conscious users. I do not consider them a final product ready out-of-the-box, thus, errors and bugs might be present.
 
