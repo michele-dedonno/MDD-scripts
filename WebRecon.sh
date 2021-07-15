@@ -19,16 +19,17 @@
 
 
 #   % ======================= DESCRIPTION AND USAGE ======================= &
-#     Bash script that implements a basic Web Application enumerations of 
-#     the target domain provided as input.
+#     Bash script that implements a basic web reconnaissance of the target
+#     domain provided as input.
 #
 #     Requirements
 #	  	This script uses the following tools for enumerating the target:
 #			- assetfinder (https://github.com/tomnomnom/assetfinder)
 #			- amass (https://github.com/OWASP/Amass)
 #			- httprobe (https://github.com/tomnomnom/httprobe)
+#			- EyeWitness (https://github.com/FortyNorthSecurity/EyeWitness)
 #			- gowitness (https://github.com/sensepost/gowitness)
-#		Please make sure to install these tools before running the script.
+#		Please make sure to have these tools installed and functional before running the script.
 #
 #     Example of usage:
 #		$ ./WebRecon.sh hackme.com
@@ -36,6 +37,7 @@
 #     This script is inspired from the Udemy course "Practical Ethical 
 #     Hacking - The Complete Course" taught by Heath Adams.
 #   % ====================================================================== %
+#
 #
 
 
@@ -54,11 +56,15 @@ fi
 # Create output folder
 mkdir -p ${output}
 
+echo "===================================================="
+echo "> Target: [$target]"
+echo "===================================================="
+
 # Find target subdomains and related assets with assetfinder
-echo "[+] Harvesting subdomains and assets for target domain '${target}' using 'assetfinder'"
+echo "[+] > assetfinder: harvesting subdomains and assets..."
 assetfinder ${target} > ${output}/assets.txt
 if [ $? -eq 0 ]; then
-	echo "[+] Full assetfinder output available at ${output}/assets.txt"
+	echo "[+] assetfinder output available at ${output}/assets.txt"
 	# Extract sub-domains only
 	cat ${output}/assets.txt | grep ${target} > ${output}/subdomains.txt
 	if [ $? -eq 0 ]; then
@@ -76,7 +82,7 @@ else
 fi
 
 # Find target subdomains and related assets with amass
-echo "[+] Harvesting subdomains and assets for target domain '${target}' using 'Amass'"
+echo "[+] > Amass: harvesting subdomains..."
 amass enum -d ${target} >> ${output}/subdomains.txt
 if [ $? -eq 0 ]; then
 	echo "[+] Amass output added to ${output}/subdomains.txt"
@@ -90,7 +96,7 @@ else
 fi
 
 # Probe for working http and https servers
-echo "[+] Probing for alive domains (over http and https) using 'httprobe'"
+echo "[+] > httprobe: probing for alive domains (over http and https)..."
 cat ${output}/subdomains.txt | httprobe | awk -F '//' '{print $2}' | tr -d ':*' >> ${output}/alive-subdomains.txt
 if [ $? -eq 0 ]; then
 	echo "[+] Alive subdomains available at ${output}/alive-subdomains.txt"
@@ -99,11 +105,16 @@ else
 fi
 
 # Take a screenshot of all alive domains
-echo "[+] Taking screenshots of alive domains using 'eyewitness'"
+#echo "[+] > EyeWitness: taking screenshots of alive domains..."
+echo "[+] > gowitness: taking screenshots of alive domains..."
 mkdir -p ${output}/screenshots
+#eyewitness --no-prompt --prepend-https -f ${output}/alive-subdomains.txt -d ${output}/screenshots
 gowitness file -f ${output}/alive-subdomains.txt -P ${output}/screenshots
 if [ $? -eq 0 ]; then
 	echo "[+] Screenshots available at ${output}/screenshots"
 else
 	echo "[-] ERROR, skipping screenshots with gowitness"
 fi
+# cleanup
+rm -rf gowitness.sqlite3
+#rm -rf geckodriver.log
