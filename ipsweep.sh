@@ -47,7 +47,7 @@ fi
 # 	--- 192.168.1.101 ping statistics ---
 # 	1 packets transmitted, 1 received, 0% packet loss, time 0ms
 # 	rtt min/avg/max/mdev = 0.125/0.125/0.125/0.000 ms
-for host in `seq 254`; do
+for host in `seq 1 254`; do
 	# $1: first user input
 	# grep: select only lines where there is the ping response
 	# cut: take the 4th field, after splitting the input string at each space
@@ -55,3 +55,7 @@ for host in `seq 254`; do
 	# &: run the successive ping without waiting for the result of the previous one
 	ping -c 1 $1.$host | grep "ttl" | cut -d " " -f 4 | tr -d ":" &
 done
+
+# Example of integration of this simple script into your toolset:
+# $ bash ipsweep.sh <target-IP-net> > ips.txt
+# $ for ip in $(cat ips.txt); do nmap $ip; done
