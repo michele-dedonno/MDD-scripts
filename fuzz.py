@@ -32,8 +32,14 @@
 #   % ====================================================================== %
 #
 #   TODO: add the possibility to provide as a parameter an HTTP request file
-#          (e.g., downloaded from BURP) and the position in this request 
-#           where to insert the payload to fuzz.
+#          (e.g., downloaded from BURP) which is loaded by the script, and 
+#          used to format the HTTP request sent to the target with the payload
+#          placed at the positions specified in the raw HTTP request file with
+#          a specific string (i.e., using a simple replace-string method that
+#          replace the identification string passed as input with the payload,
+#          similarly to the ffuf tool and the FUZZ string).
+#          Usage: fuzz.py <IP> <port> <HTTP-raw-request-file> <string-to-replace>
+#
 #
 
 import sys
