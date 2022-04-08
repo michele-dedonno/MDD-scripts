@@ -19,7 +19,8 @@
 
 
 #   % ======================= DESCRIPTION AND USAGE ======================= &
-#     python script using an incremental payload to fuzz a remote target.
+#     python script using an incremental payload to fuzz a remote target 
+#       over TCP sending an unformatted sequence of bytes (e.g., 'AABBCC..')
 # 	
 #     Usage:
 #       python3 fuzz.py <target-IPv4> <target-port>
@@ -29,6 +30,10 @@
 #     This script is inspired from the Udemy course "Practical Ethical 
 #     Hacking - The Complete Course" taught by Heath Adams.
 #   % ====================================================================== %
+#
+#   TODO: add the possibility to provide as a parameter an HTTP request file
+#          (e.g., downloaded from BURP) and the position in this request 
+#           where to insert the payload to fuzz.
 #
 
 import sys
