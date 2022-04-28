@@ -8,6 +8,7 @@ Collection of scripts for different purposes, mainly for Capture The Flags, Pene
 * [parse-LaTeX/](parse-LaTeX/): collection of python scripts to parse and clean LaTeX code;
 * [portscanner.py](portscanner.py): python script that implements a basic single-thread IPv4 port scanner;
 * [pwn-script.py](pwn-script.py): python script that uses pwntools library to exploit simple stack buffer overflows on local or remote targets;
+* [Spray-Passwords.ps1)(Spray-Passwords.ps1): PowerShell script for Passwords Spray attacks from [ZilentJack](https://github.com/ZilentJack/Spray-Passwords/blob/master/Spray-Passwords.ps1) (original source no longer available)
 * [verify-PGP.sh](verify-PGP.sh): bash script to verify a PGP-signed messaged against its public key, without permanently import the key;
 * [WebRecon.sh](WebRecon.sh): bash script for basic website information gathering;
 
