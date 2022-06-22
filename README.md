@@ -2,7 +2,8 @@
 
 Collection of scripts for different purposes, mainly for Capture The Flags, Penetration Testing, and Security Assessments.
 
-* [fuzz.py](fuzz.py): python script using an incremental payload to fuzz a remote target
+* [AD-enum.ps1](AD-enum.ps1): PowerShell script that implements basic Active Directory enumeration when executed on a domain-joined machine;
+* [fuzz.py](fuzz.py): python script using an incremental payload to fuzz a remote target;
 * [gen-payload.sh](gen-payload.sh): bash script to generate custom payload to exploit simple stack buffer overflows;
 * [ipsweep.sh](ipsweep.sh): bash script that implements a basic IPv4 sweep scan;
 * [parse-LaTeX/](parse-LaTeX/): collection of python scripts to parse and clean LaTeX code;
