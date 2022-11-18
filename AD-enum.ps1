@@ -37,7 +37,8 @@ $SearchString = "LDAP://"
 $SearchString += $PDC + "/"
 $DistinguishedName = "DC=$($domainObj.Name.Replace('.', ',DC='))"
 $SearchString += $DistinguishedName
-$SearchString
+$output="Search String: "+$SearchString
+$output
 # N.B. the DistinguishedName will consist of the domain name ("corp.com") broken down into individual domain components (DC) (“DC=corp,DC=com”)
 
 # Instantiation of the DirectorySearch class
