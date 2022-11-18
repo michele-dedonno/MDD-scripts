@@ -28,17 +28,20 @@
 #
 #
 
-# $domainObj: Entire domain object
-$domainObj = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
-# $PDC: Name of the Primary Domain Controller (PDC)
-$PDC = ($domainObj.PdcRoleOwner).Name
-# $SearchString: LDAP provider path to perform LDAP query against the DC
-$SearchString = "LDAP://"
-$SearchString += $PDC + "/"
-$DistinguishedName = "DC=$($domainObj.Name.Replace('.', ',DC='))"
-$SearchString += $DistinguishedName
-$output="Search String: "+$SearchString
-$output
+<# Initialization #>
+	# Entire domain object
+	$domainObj = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
+	
+	# Name of the Primary Domain Controller (PDC)
+	$PDC = ($domainObj.PdcRoleOwner).Name
+	
+	# LDAP provider path to perform LDAP query against the DC
+	$SearchString = "LDAP://"
+	$SearchString += $PDC + "/"
+	$DistinguishedName = "DC=$($domainObj.Name.Replace('.', ',DC='))"
+	$SearchString += $DistinguishedName
+	$output="Search String: "+$SearchString
+	$output
 # N.B. the DistinguishedName will consist of the domain name ("corp.com") broken down into individual domain components (DC) (“DC=corp,DC=com”)
 
 # Instantiation of the DirectorySearch class
@@ -47,7 +50,7 @@ $objDomain = New-Object System.DirectoryServices.DirectoryEntry
 # SearchRoot with no constructure will return results from the entire AD
 $Searcher.SearchRoot = $objDomain
 
-# Users
+<# Users #>
 $Searcher.filter="samAccountType=805306368" # all users in the domain
 # $Searcher.filter="name=Jeff_Admin" # search for a specific domain user
 $users = $Searcher.FindAll()
@@ -63,7 +66,7 @@ Foreach($obj in $users)
  Write-Host "------------------------"
 }
 
-# Groups and related members
+<# Groups and related members #>
 $Searcher.filter="(objectClass=Group)" # all groups in the domain
 # $Searcher.filter="(name=Secret_Group)" # search for a specific group
 $groups = $Searcher.FindAll()
@@ -77,7 +80,7 @@ Foreach($obj in $groups)
   Write-Host "------------------------"
 }
 
-# Service Principal Names
+<# Service Principal Names #>
 $Searcher.filter="serviceprincipalname=*"
 # $Searcher.filter="serviceprincipalname=*http*" # web servers
 $services = $Searcher.FindAll()
