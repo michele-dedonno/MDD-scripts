@@ -42,17 +42,17 @@ echo "[>] FTPd user: $ftpuser"
 echo "[>] FTPd user home: $ftphome"
 
 # create ftpgroup
-sudo groupadd $sgroup
+groupadd $sgroup
 # create new sytem user
 echo "[*] Enter password for the user '$suser'."
-sudo useradd -g $sgroup -d /dev/null -s /etc $suser
+useradd -g $sgroup -d /dev/null -s /etc $suser
 # configure Pure-FTPd
-sudo pure-pw useradd $ftpuser -u $suser -d $ftphome
-sudo pure-pw mkdb
+pure-pw useradd $ftpuser -u $suser -d $ftphome
+pure-pw mkdb
 cd /etc/pure-ftpd/auth/
-sudo ln -s ../conf/PureDB 60pdb
-sudo mkdir -p $ftphome
-sudo chown -R $suser:$sgroup $ftphome
-sudo systemctl restart pure-ftpd
+ln -s ../conf/PureDB 60pdb
+mkdir -p $ftphome
+chown -R $suser:$sgroup $ftphome
+systemctl restart pure-ftpd
 
 echo "[+] Finished."
