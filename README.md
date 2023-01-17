@@ -10,7 +10,7 @@ Collection of scripts for different purposes, mainly for Capture The Flags, Pene
 * [parse-LaTeX/](parse-LaTeX/): collection of python scripts to parse and clean LaTeX code;
 * [portscanner.py](portscanner.py): python script that implements a basic single-thread IPv4 port scanner;
 * [pwn-script.py](pwn-script.py): python script that uses pwntools library to exploit simple stack buffer overflows on local or remote targets;
-* [setup-fptd.sh](setup-fptd.sh): bash script to setup the ftpd server after first installation (inspired from Offensive Security PEN-200 course material);
+* [setup-ftpd.sh](setup-ftpd.sh): bash script to setup the ftpd server after first installation (inspired from Offensive Security PEN-200 course material);
 * [Spray-Passwords.ps1](Spray-Passwords.ps1): PowerShell script from [ZilentJack](https://github.com/ZilentJack/Spray-Passwords/blob/master/Spray-Passwords.ps1) to perform password spraying attacks against user accounts in Active Directory (AD) (original source no longer available);
 * [smb-ver.sh](smb-ver.sh): bash script for SMB server version enumeration, adapted from [HackTricks.xzy](https://book.hacktricks.xyz/network-services-pentesting/pentesting-smb);
 * [verify-PGP.sh](verify-PGP.sh): bash script to verify a PGP-signed messaged against its public key, without permanently import the key;
