@@ -3,8 +3,21 @@
 Python script to create passphrases of various length, including alpha numeric and special characters.
 
 # Usage
+```bash
+usage: pass-gen.py [-h] [-w WORDS] [-n] [-s SEPARATOR] [-f FILE] [-v]
 
-`python3 pass-gen.py [-h] [-w WORDS] [-n] [-s SEPARATOR] [-f FILE] [-v]`
+Generate a strong passphrase.
+
+options:
+  -h, --help            show this help message and exit
+  -w WORDS, --words WORDS
+                        number of words
+  -n, --numeric         add a number at each word
+  -s SEPARATOR, --separator SEPARATOR
+                        words separator
+  -f FILE, --file FILE  path to dictionary
+  -v, --verbose         verbose output
+```
 
 Example:
 ```bash
