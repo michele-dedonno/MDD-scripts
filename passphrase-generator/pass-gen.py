@@ -25,7 +25,8 @@
 #     Example of usage:
 #		    $ python3 pass-gen.py -f ./my_eff_large_wordlist.txt -n 10 -v
 #
-#     This script is inspired from the zwolbers script (https://github.com/zwolbers/passphrase-generator/)
+#     This script is inspired from the zwolbers script (https://github.com/zwolbers/passphrase-generator/).
+#     Wordlists can be found at https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases.
 #   % ====================================================================== %
 #
 import argparse
