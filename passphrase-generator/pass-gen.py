@@ -43,6 +43,8 @@ parser.add_argument('-v', '--verbose', action = 'store_true', help = 'verbose ou
 
 args = parser.parse_args()
 
+
+
 with open(args.file) as f:
 	words = [word.strip() for word in f]
 	separator = args.separator
@@ -59,4 +61,4 @@ if args.verbose:
 	print('Number of letters:  ' + str(len(passphrase)))
 
 else:
-	print(password)
+	print(passphrase)
