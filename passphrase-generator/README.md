@@ -4,10 +4,17 @@ Python script to create passphrases of various length, including alpha numeric a
 
 # Usage
 
-`python3 pass-gen.py [-h] [-n NUM] [-s SEPARATOR] [-f FILE] [-v]`
+`python3 pass-gen.py [-h] [-w WORDS] [-n] [-s SEPARATOR] [-f FILE] [-v]`
 
 Example:
-`$ python3 pass-gen.py -f ./my_eff_large_wordlist.txt -n 10 -v`
+```bash
+$ python3 pass-gen.py -f ./my_eff_large_wordlist.txt -n 10 -v
+
+Deplete4-Surgery2-Species8-Thesis1-Placidly8-Glitter2-Mashing0-Tidiness6-Hastiness9-Baking4
+
+Number of words:    10
+Number of letters:  91
+```
 
 # Wordlists
 The script uses by default the [EFF large wordlist](./my_eff_large_wordlist.txt).
