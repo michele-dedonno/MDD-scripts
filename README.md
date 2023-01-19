@@ -8,6 +8,7 @@ Collection of scripts for different purposes, mainly for Capture The Flags, Pene
 * [gen-payload.sh](gen-payload.sh): bash script to generate custom payload to exploit simple stack buffer overflows;
 * [ipsweep.sh](ipsweep.sh): bash script that implements a basic IPv4 sweep scan;
 * [parse-LaTeX/](parse-LaTeX/): collection of python scripts to parse and clean LaTeX code;
+* [passphrase-generator/](passphrase-generator/): python script to create passphrases using a cryptographically strong random generator.
 * [portscanner.py](portscanner.py): python script that implements a basic single-thread IPv4 port scanner;
 * [pwn-script.py](pwn-script.py): python script that uses pwntools library to exploit simple stack buffer overflows on local or remote targets;
 * [setup-ftpd.sh](setup-ftpd.sh): bash script to setup the ftpd server after first installation (inspired from Offensive Security PEN-200 course material);
