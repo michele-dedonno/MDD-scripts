@@ -34,7 +34,7 @@ import secrets
 
 
 
-parser = argparse.ArgumentParser(description = 'Generate a Passphrase')
+parser = argparse.ArgumentParser(description = 'Generate a strong passphrase.')
 
 parser.add_argument('-w', '--words', default = 6, type = int, help = 'number of words')
 parser.add_argument('-n', '--numeric', action = 'store_true', help = 'add a number at each word')
