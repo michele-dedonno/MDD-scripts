@@ -44,7 +44,7 @@ echo "[>] FTPd user home: $ftphome"
 # create ftpgroup
 groupadd $sgroup
 # create new sytem user
-echo "[*] Enter password for the user '$suser'."
+echo "[*] Setting up the FTP user '$ftpuser'."
 useradd -g $sgroup -d /dev/null -s /etc $suser
 # configure Pure-FTPd
 pure-pw useradd $ftpuser -u $suser -d $ftphome
