@@ -27,6 +27,8 @@
 #   % ====================================================================== %
 #
 #
+# TODO: 
+# - add the target DC ($PDC) as a parameter
 
 <# Initialization #>
 try {
