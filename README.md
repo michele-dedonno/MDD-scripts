@@ -2,11 +2,12 @@
 
 Collection of scripts for different purposes, mainly for Capture The Flags, Penetration Testing, and Security Assessments.
 
-* [AD-enum.ps1](AD-enum.ps1): PowerShell script that implements basic Active Directory enumeration when executed on a domain-joined machine;
+* [AD-enum.ps1](AD-enum.ps1): PowerShell script that implements basic Active Directory enumeration when executed from a domain-joined machine;
 * [fuzz.py](fuzz.py): python script using an incremental payload to fuzz a remote target;
 * [gen-badchars.py](gen-badchars.py): python script to generate badchars string commonly used for identifying badchars while exploiting stack buffer oveflows;
 * [gen-payload.sh](gen-payload.sh): bash script to generate custom payload to exploit simple stack buffer overflows;
 * [ipsweep.sh](ipsweep.sh): bash script that implements a basic IPv4 sweep scan;
+* [List-SPNs.ps1](List-SPNs.ps1): PowerShell script that lists user SPNs when executed from a domain-joined machine;
 * [parse-LaTeX/](parse-LaTeX/): collection of python scripts to parse and clean LaTeX code;
 * [passphrase-generator/](passphrase-generator/): python script to create passphrases using a cryptographically strong random generator.
 * [portscanner.py](portscanner.py): python script that implements a basic single-thread IPv4 port scanner;
