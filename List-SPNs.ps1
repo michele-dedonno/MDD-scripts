@@ -22,7 +22,7 @@
 #
 #     Example of usage:
 #     .\List-SPNs.ps1 > SPNs.txt
-#		  powershell.exe -exec bypass -command ".\List-SPNs.ps1 > SPNs.txt" 
+#     powershell.exe -exec bypass -command ".\List-SPNs.ps1 > SPNs.txt" 
 #
 #   % ====================================================================== %
 #
