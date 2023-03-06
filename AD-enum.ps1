@@ -81,28 +81,31 @@ Foreach($obj in $groups)
 }
 
 <# Service Principal Names #>
-$Searcher.filter="serviceprincipalname=*"
+#
+# Use https://github.com/michele-dedonno/MDD-scripts/blob/master/List-SPNs.ps1 for SPNs
+#
+# $Searcher.filter="serviceprincipalname=*"
 # $Searcher.filter="serviceprincipalname=*http*" # web servers
-$services = $Searcher.FindAll()
-Write-Host "########## Services ##########"
-Foreach($obj in $services)
-{
- Foreach($prop in $obj.Properties)
- {
-  $prop
-  Write-Host "DNS Lookup:"
-  # try {
-    # $addresses = [System.Net.Dns]::GetHostAddresses("$prop.dnshostname").IPAddressToString
-  # }
-  # catch { 
-    # $addresses = "Server IP cannot resolve."
-  # }
-  # foreach($address in $addresses) {
-    # Write-Host $dnshost, $address 
-  # }
-  nslookup $prop.dnshostname
-  #(nslookup $prop.dnshostname | Select-String Address | Where-Object LineNumber -eq 5).ToString().Split(' ')[-1]
- }
-
- Write-Host "------------------------"
-}
+# $services = $Searcher.FindAll()
+# Write-Host "########## Services ##########"
+# Foreach($obj in $services)
+# {
+# Foreach($prop in $obj.Properties)
+# 
+# $prop
+# Write-Host "DNS Lookup:"
+# # try {
+#   # $addresses = [System.Net.Dns]::GetHostAddresses("$prop.dnshostname").IPAddressToString
+# # }
+# # catch { 
+#   # $addresses = "Server IP cannot resolve."
+# # }
+# # foreach($address in $addresses) {
+#   # Write-Host $dnshost, $address 
+# # }
+# nslookup $prop.dnshostname
+# #(nslookup $prop.dnshostname | Select-String Address | Where-Object LineNumber -eq 5).ToString().Split(' ')[-1]
+#}
+#
+# Write-Host "------------------------"
+#}
