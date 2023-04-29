@@ -40,6 +40,7 @@ $PDC = ($domainObj.PdcRoleOwner).Name
 $SearchString = "LDAP://"
 $SearchString += $PDC + "/"
 $DistinguishedName = "DC=$($domainObj.Name.Replace('.', ',DC='))"
+# $DistinguishedName = ([adsi]'').distinguishedName # alternative
 $SearchString += $DistinguishedName
 $output="Search String: "+$SearchString
 $output
