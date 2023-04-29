@@ -31,11 +31,12 @@
 <# Initialization #>
 # Entire domain object
 $domainObj = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
+## PdcRoleOwner: Primary Domain Controller
 
 # Name of the Primary Domain Controller (PDC)
 $PDC = ($domainObj.PdcRoleOwner).Name
 
-# LDAP provider path to perform LDAP query against the DC
+# LDAP provider path to perform LDAP query against the DC (format: LDAP://HostName[:PortNumber][/DistinguishedName])
 $SearchString = "LDAP://"
 $SearchString += $PDC + "/"
 $DistinguishedName = "DC=$($domainObj.Name.Replace('.', ',DC='))"
