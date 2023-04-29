@@ -63,6 +63,7 @@ Foreach($obj in $users)
  Foreach($prop in $obj.Properties)
  {
   $prop
+  # $prop.memberof # groups of a user
  }
 
  Write-Host "------------------------"
