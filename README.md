@@ -8,6 +8,7 @@ Collection of scripts for different purposes, mainly for Capture The Flags, Pene
 * [gen-payload.sh](gen-payload.sh): bash script to generate custom payload to exploit simple stack buffer overflows;
 * [ipsweep.sh](ipsweep.sh): bash script that implements a basic IPv4 sweep scan;
 * [List-SPNs.ps1](List-SPNs.ps1): PowerShell script that lists user SPNs when executed from a domain-joined machine;
+* [NoSleep.ps1](NoSleep.ps1): PowerShell script that keeps your computer awake;
 * [parse-LaTeX/](parse-LaTeX/): collection of python scripts to parse and clean LaTeX code;
 * [pass-gen.py](passphrase-generator/pass-gen.py): python script to create passphrases using a cryptographically strong random generator.
 * [portscanner.py](portscanner.py): python script that implements a basic single-thread IPv4 port scanner;
