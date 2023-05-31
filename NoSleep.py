@@ -31,13 +31,19 @@
 
 import time, keyboard
 from datetime import datetime
+from termcolor import colored
 
 ############# TO EDIT #############
 sleeptime = 4 * 60 # seconds
 ###################################
 
+print("------------------------------------------------------")
+print("Executing CTRL-toggle NoSleep routine.")
+print("Start time: "+datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+print("------------------------------------------------------")
+
 while True:
 	keyboard.send("CTRL")
-	print("< 3")
+	print(colored("< 3","red"))
 	time.sleep(sleeptime)
-	print("<3")
+	print(colored("<3","red"))
