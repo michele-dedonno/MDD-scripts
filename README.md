@@ -3,6 +3,7 @@
 Collection of scripts for different purposes, mainly for Capture The Flags, Penetration Testing, and Security Assessments.
 
 * [AD-enum.ps1](AD-enum.ps1): PowerShell script that implements basic Active Directory enumeration when executed from a domain-joined machine;
+* [captive-portal.php](captive-portal.php): PHP backend of a rogue Wi-Fi captive portal which stores all entered passphrases in a txt file;
 * [fuzz.py](fuzz.py): python script using an incremental payload to fuzz a remote target;
 * [gen-badchars.py](gen-badchars.py): python script to generate badchars string commonly used for identifying badchars while exploiting stack buffer oveflows;
 * [gen-payload.sh](gen-payload.sh): bash script to generate custom payload to exploit simple stack buffer overflows;
