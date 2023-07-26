@@ -1,6 +1,7 @@
 <?php
-# PHP code behind a  Wi-Fi captive portal which stores in a file 
-# all entered passphrases and keeps returning a failure message
+# PHP code behind a rogue Wi-Fi captive portal which stores in a .txt file 
+# all entered passphrases and keeps returning a failure message to invite
+# the client to enter new passphrases
 #
 # inspired from OffSec's PEN-210 course material 2023
 #
