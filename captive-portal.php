@@ -18,10 +18,10 @@ $wordlist_path = '/tmp/passphrases.txt';
 $passphrase = $_POST['passphrase'];
 
 # Make sure passphrase exists and is within passphrase lenght limits (8-63 chars)
-if (!isset($_POST['passphrase']) || strlen($passphrase) < 8 || strlen($passphrase) > 63) {
-  header('Location: index.php?failure');
-  die();
-}
+# if (!isset($_POST['passphrase']) || strlen($passphrase) < 8 || strlen($passphrase) > 63) {
+#  header('Location: index.php?failure');
+#  die();
+# }
 
 # Add passphrase to wordlist
 $wordlist_file = fopen($wordlist_path, "a");
