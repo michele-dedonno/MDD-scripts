@@ -26,7 +26,7 @@ Collection of scripts for different purposes, mainly for Capture The Flags, Pene
 
 Please note that these scripts are just helpers I use in my activities and might be (partially) useful for conscious users. I do not consider them a final product ready out-of-the-box, thus, errors and bugs might be present. Please use these scripts at your own risk and only in a testing environment or with explicit authorization from the owner of your targets.
 
-Proposed updates/fixes/improvements are always welcome.
+Any suggestion for updates/fixes/improvements is always welcome.
 
 # License
 These scripts are free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
