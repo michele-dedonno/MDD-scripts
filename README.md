@@ -34,4 +34,4 @@ See the GNU General Public License for more details.
 
 # Copyright
 
-Copyright (C) 2020-2025 Michele De Donno, All Rights Reserved
+Copyright (C) 2020-2024 Michele De Donno, All Rights Reserved
